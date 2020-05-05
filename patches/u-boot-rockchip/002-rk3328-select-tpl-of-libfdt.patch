@@ -1,0 +1,25 @@
+From 34db6dab8721cd1640d98bc3f8f0083fdd0d5088 Mon Sep 17 00:00:00 2001
+From: YanlanShen <yanlan.Shen@rosinson.com>
+Date: Mon, 4 May 2020 21:56:12 +0800
+Subject: [PATCH] rk3328: select tpl of libfdt
+
+Signed-off-by: YanlanShen <yanlan.Shen@rosinson.com>
+---
+ arch/arm/mach-rockchip/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/mach-rockchip/Kconfig b/arch/arm/mach-rockchip/Kconfig
+index 0cb1f23..e1fcca5 100644
+--- a/arch/arm/mach-rockchip/Kconfig
++++ b/arch/arm/mach-rockchip/Kconfig
+@@ -158,6 +158,7 @@ config ROCKCHIP_RK3328
+ 	select SPL
+ 	select SUPPORT_TPL
+ 	select TPL
++	select TPL_OF_LIBFDT
+ 	select TPL_NEEDS_SEPARATE_TEXT_BASE if TPL
+ 	select TPL_NEEDS_SEPARATE_STACK if TPL
+ 	imply ROCKCHIP_COMMON_BOARD
+-- 
+2.17.1
+

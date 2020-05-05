@@ -37,17 +37,32 @@ define U-Boot/rock64-rk3328
   BL31=$(STAGING_DIR_IMAGE)/rk3328_bl31.elf
 endef
 
+define U-Boot/rockpie-rk3328
+  BUILD_SUBTARGET:=armv8
+  NAME:=Rockpi E
+  BUILD_DEVICES:= \
+    radxa_rockpi-e
+  BL31=$(STAGING_DIR_IMAGE)/rk3328_bl31.elf
+endef
+
 UBOOT_TARGETS := \
   rockpro64-rk3399 \
-  rock64-rk3328
+  rock64-rk3328 \
+  rockpie-rk3328
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
 UBOOT_MAKE_FLAGS += \
   BL31=$(BL31)
 
+# HOST_CFLAGS += $(shell python3-config --includes)
+
 define Build/Configure
-	 echo CONFIG_CMD_SETEXPR=y >> $(PKG_BUILD_DIR)/configs/$(UBOOT_CONFIG)_defconfig
+	$(CP) ./files/rockpie-rk3328_defconfig $(PKG_BUILD_DIR)/configs/
+	$(CP) ./files/rk3328-rockpie.dts $(PKG_BUILD_DIR)/arch/arm/dts/
+	$(CP) ./files/rk3328-rockpie-u-boot.dtsi $(PKG_BUILD_DIR)/arch/arm/dts/
+
+	echo CONFIG_CMD_SETEXPR=y >> $(PKG_BUILD_DIR)/configs/$(UBOOT_CONFIG)_defconfig
 	$(call Build/Configure/U-Boot)
 	$(SED) 's#CONFIG_MKIMAGE_DTC_PATH=.*#CONFIG_MKIMAGE_DTC_PATH="$(PKG_BUILD_DIR)/scripts/dtc/dtc"#g' $(PKG_BUILD_DIR)/.config
 	echo 'CONFIG_IDENT_STRING=" OpenWrt"' >> $(PKG_BUILD_DIR)/.config

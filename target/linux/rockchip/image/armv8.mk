@@ -5,6 +5,15 @@
 # See /LICENSE for more information.
 #
 
+define Device/radxa_rockpi-e
+  DEVICE_VENDOR := Radxa
+  DEVICE_MODEL := Rockpi E
+  SOC := rk3328
+  UBOOT_DEVICE_NAME := rockpie-rk3328
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | rockpie-img | gzip | append-metadata
+endef
+TARGET_DEVICES += radxa_rockpi-e
+
 define Device/pine64_rock64
   DEVICE_VENDOR := Pine64
   DEVICE_MODEL := Rock64

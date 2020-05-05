@@ -1,0 +1,46 @@
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index 9c593b2c98..ce15c1bc20 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -104,7 +104,8 @@ dtb-$(CONFIG_ROCKCHIP_RK3308) += \
+ 
+ dtb-$(CONFIG_ROCKCHIP_RK3328) += \
+ 	rk3328-evb.dtb \
+-	rk3328-rock64.dtb
++	rk3328-rock64.dtb \
++	rk3328-rockpie.dtb
+ 
+ dtb-$(CONFIG_ROCKCHIP_RK3368) += \
+ 	rk3368-lion.dtb \
+diff --git a/board/rockchip/evb_rk3328/MAINTAINERS b/board/rockchip/evb_rk3328/MAINTAINERS
+index c661d2e06a..8ded56b30a 100644
+--- a/board/rockchip/evb_rk3328/MAINTAINERS
++++ b/board/rockchip/evb_rk3328/MAINTAINERS
+@@ -10,3 +10,10 @@ M:      Matwey V. Kornilov <matwey.kornilov@gmail.com>
+ S:      Maintained
+ F:      configs/rock64-rk3328_defconfig
+ F:      arch/arm/dts/rk3328-rock64-u-boot.dtsi
++
++ROCKPIE-RK3328
++M:      Banglang Huang <banglang.huang@foxmail.com>
++S:      Maintained
++F:      configs/rockpie-rk3328_defconfig
++F:      arch/arm/dts/rk3328-rockpie.dts
++F:      arch/arm/dts/rk3328-rockpie-u-boot.dtsi
+diff --git a/doc/README.rockchip b/doc/README.rockchip
+index 9b699b9ae5..6e7828a252 100644
+--- a/doc/README.rockchip
++++ b/doc/README.rockchip
+@@ -52,10 +52,11 @@ Two RK3308 boards are supported:
+    - EVB RK3308 - use evb-rk3308 configuration
+    - ROC-CC-RK3308 - use roc-cc-rk3308 configuration
+ 
+-Two RK3328 board are supported:
++Three RK3328 board are supported:
+ 
+    - EVB RK3328 - use evb-rk3328_defconfig
+    - Pine64 Rock64 board - use rock64-rk3328_defconfig
++   - Radxa Rockpi E board - use rockpie-rk3328_defconfig
+ 
+ Size RK3399 boards are supported (aarch64):
+ 
